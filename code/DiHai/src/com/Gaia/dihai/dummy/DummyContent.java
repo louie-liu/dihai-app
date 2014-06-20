@@ -17,17 +17,20 @@ public class DummyContent {
 	 * An array of sample (dummy) items.
 	 */
 	public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+        public static String item_id_home = "home";
 
 	/**
 	 * A map of sample (dummy) items, by ID.
 	 */
 	public static Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
-
+        public static int TOTAL_KINDS = 5;
 	static {
-		// Add 3 sample items.
-		addItem(new DummyItem("1", "Item 1"));
-		addItem(new DummyItem("2", "Item 2"));
-		addItem(new DummyItem("3", "Item 3"));
+		// Add 5 sample items.
+		addItem(new DummyItem("home", ""));
+		addItem(new DummyItem("mylist", ""));
+		addItem(new DummyItem("friends", ""));
+    		addItem(new DummyItem("devices", ""));
+    		addItem(new DummyItem("settngis", ""));
 	}
 
 	private static void addItem(DummyItem item) {

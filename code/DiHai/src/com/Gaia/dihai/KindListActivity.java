@@ -3,6 +3,7 @@ package com.Gaia.dihai;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import com.Gaia.dihai.dummy.DummyContent;
 
 /**
  * An activity representing a list of Items. This activity has different
@@ -61,10 +62,22 @@ public class KindListActivity extends FragmentActivity implements
 			// fragment transaction.
 			Bundle arguments = new Bundle();
 			arguments.putString(KindDetailFragment.ARG_ITEM_ID, id);
-			KindDetailFragment fragment = new KindDetailFragment();
-			fragment.setArguments(arguments);
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.kind_detail_container, fragment).commit();
+                        if(id.equals(DummyContent.item_id_home))
+                            {
+                                KindHomeFragment fragment = null;
+        			fragment = new KindHomeFragment();
+                                fragment.setArguments(arguments);
+                                getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.kind_detail_container, fragment).commit();
+                            }
+                        else
+                            {
+                                KindDetailFragment fragment = null;
+                                fragment = new KindDetailFragment();
+                                fragment.setArguments(arguments);
+                                getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.kind_detail_container, fragment).commit();
+                            }
 
 		} else {
 			// In single-pane mode, simply start the detail activity

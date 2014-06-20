@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.Gaia.dihai.dummy.DummyContent;
+import com.Gaia.dihai.adapter.KindListAdapter;
 
 /**
  * A list fragment representing a list of Items. This fragment also supports
@@ -71,9 +72,14 @@ public class KindListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		// TODO: replace with a real list adapter.
-		setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-				android.R.layout.simple_list_item_activated_1,
-				android.R.id.text1, DummyContent.ITEMS));
+                /*
+                setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+				R.layout.kind_list_layout,
+				R.id.kind_item, DummyContent.ITEMS));
+				*/
+		setListAdapter(new KindListAdapter<DummyContent.DummyItem>(getActivity(),
+				R.layout.kind_list_layout,
+				R.id.kind_item, DummyContent.ITEMS));
 	}
 
 	@Override
