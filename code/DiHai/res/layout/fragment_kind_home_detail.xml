@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal">
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="0px"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:iconifiedByDefault="true"
+        android:imeOptions="actionSearch"
+        android:inputType="textFilter" />
+
+    <ImageButton
+        android:id="@+id/search_buttom"
+        android:layout_width="wrap_content"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/ic_searchbar_background"
+        />
+
+</LinearLayout>
+
+    <ListView android:id="@android:id/list"
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="false" />
+
+
+</LinearLayout>
+

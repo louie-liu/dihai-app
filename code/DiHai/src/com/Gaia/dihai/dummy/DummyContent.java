@@ -17,6 +17,7 @@ public class DummyContent {
 	 * An array of sample (dummy) items.
 	 */
 	public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+        public static String item_id_home = "home";
 
 	/**
 	 * A map of sample (dummy) items, by ID.
