@@ -65,10 +65,10 @@ public class KindListActivity extends FragmentActivity implements
                         if(id.equals(DummyContent.item_id_home))
                             {
                                 KindHomeFragment fragment = null;
-        			fragment = new KindHomeFragment();
-                                fragment.setArguments(arguments);
-                                getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.kind_detail_container, fragment).commit();
+			        			fragment = new KindHomeFragment();
+			                                fragment.setArguments(arguments);
+			                                getSupportFragmentManager().beginTransaction()
+			                                .replace(R.id.kind_detail_container, fragment).commit();
                             }
                         else
                             {

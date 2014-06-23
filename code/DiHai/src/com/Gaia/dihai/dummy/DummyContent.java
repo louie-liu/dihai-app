@@ -23,14 +23,19 @@ public class DummyContent {
 	 * A map of sample (dummy) items, by ID.
 	 */
 	public static Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
-        public static int TOTAL_KINDS = 5;
+        public static int HOME_KINDS = 0;
+        public static int MYLIST_KINDS = 1;
+        public static int FRIENDS_KINDS = 2;
+        public static int DEVICES_KINDS = 3;
+        public static int SETTING_KINDS = 4;
+        public static int TOTAL_KINDS = SETTING_KINDS+1;
 	static {
 		// Add 5 sample items.
 		addItem(new DummyItem("home", ""));
 		addItem(new DummyItem("mylist", ""));
 		addItem(new DummyItem("friends", ""));
-    		addItem(new DummyItem("devices", ""));
-    		addItem(new DummyItem("settngis", ""));
+		addItem(new DummyItem("devices", ""));
+		addItem(new DummyItem("settngs", ""));
 	}
 
 	private static void addItem(DummyItem item) {

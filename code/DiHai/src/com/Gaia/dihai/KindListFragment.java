@@ -2,10 +2,15 @@ package com.Gaia.dihai;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ImageView;
+import android.view.View.OnClickListener;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.Gaia.dihai.dummy.DummyContent;
 import com.Gaia.dihai.adapter.KindListAdapter;
@@ -19,7 +24,7 @@ import com.Gaia.dihai.adapter.KindListAdapter;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class KindListFragment extends ListFragment {
+public class KindListFragment extends Fragment implements OnClickListener{
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -36,8 +41,16 @@ public class KindListFragment extends ListFragment {
 	/**
 	 * The current activated item position. Only used on tablets.
 	 */
-	private int mActivatedPosition = ListView.INVALID_POSITION;
+	private int mActivatedPosition = -1;//ListView.INVALID_POSITION;
 
+	private ImageView mHomeButtom=null;
+	private ImageView mMyListButtom=null;
+	private ImageView mFriendsButtom=null;
+	private ImageView mDevicesButtom=null;
+	private ImageView mSettingsButtom=null;
+	
+
+	
 	/**
 	 * A callback interface that all activities containing this fragment must
 	 * implement. This mechanism allows activities to be notified of item
@@ -66,6 +79,26 @@ public class KindListFragment extends ListFragment {
 	 */
 	public KindListFragment() {
 	}
+	
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.kind_list_content, container,false);
+        mHomeButtom = (ImageView)v.findViewById(R.id.kind_home_buttom);
+        mMyListButtom = (ImageView)v.findViewById(R.id.kind_mylist_buttom);
+        mFriendsButtom = (ImageView)v.findViewById(R.id.kind_friends_buttom);
+        mDevicesButtom = (ImageView)v.findViewById(R.id.kind_devices_buttom);
+        mSettingsButtom = (ImageView)v.findViewById(R.id.kind_settings_buttom);
+
+		
+	mHomeButtom.setOnClickListener(this);  
+	mMyListButtom.setOnClickListener(this);  
+	mFriendsButtom.setOnClickListener(this);  
+	mDevicesButtom.setOnClickListener(this);  
+	mSettingsButtom.setOnClickListener(this);  
+    
+        return v;
+    }
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -76,10 +109,10 @@ public class KindListFragment extends ListFragment {
                 setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
 				R.layout.kind_list_layout,
 				R.id.kind_item, DummyContent.ITEMS));
-				*/
 		setListAdapter(new KindListAdapter<DummyContent.DummyItem>(getActivity(),
 				R.layout.kind_list_layout,
 				R.id.kind_item, DummyContent.ITEMS));
+   			*/
 	}
 
 	@Override
@@ -114,7 +147,55 @@ public class KindListFragment extends ListFragment {
 		// Reset the active callbacks interface to the dummy implementation.
 		mCallbacks = sDummyCallbacks;
 	}
+    @Override
+    public void onClick(View v) {
 
+                
+		if(v.getId()==R.id.kind_home_buttom)
+                {      
+                        mActivatedPosition = DummyContent.HOME_KINDS;
+			mHomeButtom.setSelected(true);
+                  }
+		else
+			mHomeButtom.setSelected(false);
+        
+		if(v.getId()==R.id.kind_mylist_buttom)
+                {      
+                        mActivatedPosition = DummyContent.MYLIST_KINDS;
+			mMyListButtom.setSelected(true);
+                  }
+		else
+			mMyListButtom.setSelected(false);
+        
+		if(v.getId()==R.id.kind_friends_buttom)
+                {      
+                        mActivatedPosition = DummyContent.FRIENDS_KINDS;
+			mFriendsButtom.setSelected(true);
+                  }
+		else
+			mFriendsButtom.setSelected(false);
+        
+		if(v.getId()==R.id.kind_devices_buttom)
+                {      
+                        mActivatedPosition = DummyContent.DEVICES_KINDS;
+			mDevicesButtom.setSelected(true);
+                  }
+		else
+			mDevicesButtom.setSelected(false);
+        
+		if(v.getId()==R.id.kind_settings_buttom)
+                {      
+                        mActivatedPosition= DummyContent.SETTING_KINDS;
+			mSettingsButtom.setSelected(true);
+                  }
+		else
+			mSettingsButtom.setSelected(false);
+
+		// Notify the active callbacks interface (the activity, if the
+		// fragment is attached to one) that an item has been selected.
+		mCallbacks.onItemSelected(DummyContent.ITEMS.get(mActivatedPosition).id);
+    	}
+	/*
 	@Override
 	public void onListItemClick(ListView listView, View view, int position,
 			long id) {
@@ -124,11 +205,11 @@ public class KindListFragment extends ListFragment {
 		// fragment is attached to one) that an item has been selected.
 		mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
 	}
-
+*/
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		if (mActivatedPosition != ListView.INVALID_POSITION) {
+		if (mActivatedPosition != -1/*ListView.INVALID_POSITION*/) {
 			// Serialize and persist the activated item position.
 			outState.putInt(STATE_ACTIVATED_POSITION, mActivatedPosition);
 		}
@@ -141,18 +222,24 @@ public class KindListFragment extends ListFragment {
 	public void setActivateOnItemClick(boolean activateOnItemClick) {
 		// When setting CHOICE_MODE_SINGLE, ListView will automatically
 		// give items the 'activated' state when touched.
+		/*
 		getListView().setChoiceMode(
 				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
 						: ListView.CHOICE_MODE_NONE);
+		*/
+                mActivatedPosition = DummyContent.HOME_KINDS;
+        	mHomeButtom.setSelected(true);
+		mCallbacks.onItemSelected(DummyContent.ITEMS.get(mActivatedPosition).id);
 	}
 
 	private void setActivatedPosition(int position) {
+		/*
 		if (position == ListView.INVALID_POSITION) {
 			getListView().setItemChecked(mActivatedPosition, false);
 		} else {
 			getListView().setItemChecked(position, true);
 		}
-
+		*/
 		mActivatedPosition = position;
 	}
 }
